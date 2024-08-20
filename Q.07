@@ -1,0 +1,32 @@
+//Q.07
+
+#include <stdio.h>
+ // Lê a palavra digitada pelo usuário
+
+int main() {
+    char palavra[30];
+    int chave, i;
+
+    scanf("%s", palavra); 
+// Experimentando diferentes chaves para a cifra
+    for (chave = 1; chave <= 25; chave++) {
+// Loop para criptografar a palavra, caractere por caractere    
+for (i = 0; palavra[i] != '\0'; i++) {
+            palavra[i] = (palavra[i] - 'a' + chave) % 26 + 'a';
+        }
+        printf("chave %2d: ", chave);
+// Exibindo a palavra cifrada
+        for (i = 0; palavra[i] != '\0'; i++) {
+            putchar(palavra[i]);
+        }
+// Ajuste do formato de saída para facilitar a leitura     
+if (chave % 5 == 0) {
+            printf("\n\n");
+        } else {
+            printf(" A chave é ");
+        }
+    }
+
+    printf("\n");
+    return 0;
+}
