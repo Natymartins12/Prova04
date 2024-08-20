@@ -1,0 +1,70 @@
+#include <stdlib.h>
+#include <stdlib.h>
+
+// Função para fazer a multiplicação de duas matrizes
+void multiplicarMatrizes(int n, int matriz1[n][n], int matriz2[n][n], int resultado[n][n]) {
+    
+    // Dando início a matriz resultado com zero
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            resultado[i][j] = 0;
+        }
+    }
+    
+    // Multiplicação das matrizes
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < n; k++) {
+                resultado[i][j] += matriz1[i][k] * matriz2[k][j];
+            }
+        }
+    }
+}
+
+// Função para imprimir a matriz
+void imprimirMatriz(int n, int matriz[n][n]) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int n;
+
+    // Leitura do tamanho da matriz
+    printf("Digite o tamanho das matrizes (n x n): ");
+    scanf("%d", &n);
+
+    // Alocação dinâmica das matrizes
+    int matriz1[n][n], matriz2[n][n], resultado[n][n];
+
+    // Fazendo a Leitura da primeira matriz
+    printf("Mostre os elementos da primeira matriz (%d x %d):\n", n, n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz1[i][j]);
+        }
+    }
+
+    // Fazendo a leitura da segunda matriz
+    printf("Mostre os elementos da segunda matriz (%d x %d):\n", n, n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz2[i][j]);
+        }
+    }
+
+    // Multiplicação das matrizes
+    multiplicarMatrizes(n, matriz1, matriz2, resultado);
+
+    // Impressão da matriz resultado
+    printf("O resultado da multiplicação das matrizes é:\n");
+    imprimirMatriz(n, resultado);
+
+    return 0;
+}
