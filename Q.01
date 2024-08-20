@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+// Função para contar a soma dos elementos do array
+int somaArray(int array[], int tamanho) {
+    int soma = 0;
+    for (int i = 0; i < tamanho; i++) {
+        soma += array[i];
+    }
+    return soma;
+}
+
+int main() {
+    int n;
+
+    // Consulta do tamanho do array
+    printf("Mostre o tamanho do array: ");
+    scanf("%d", &n);
+
+    // Constatando se o tamanho é positivo
+    if (n <= 0) {
+        printf("O tamanho do array precisa ser um número positivo.\n");
+        return 1;
+    }
+
+    int array[n];
+
+    // Verificação dos elementos do array
+    printf("Digite %d números inteiros:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &array[i]);
+    }
+
+    // Contagem da soma utilizando a função
+    int resultado = somaArray(array, n);
+
+    // Amostra do resultado
+    printf("A somatória dos elementos do array é: %d\n", resultado);
+
+    return 0;
+}
