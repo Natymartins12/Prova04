@@ -1,0 +1,34 @@
+//Q.06
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char chave[27], texto[100], cifrado[100];
+    int i, j;
+// Processando a chave
+    printf("Por favor, informe a chave de 26 letras: ");
+    fgets(chave, 27, stdin);
+    chave[strcspn(chave, "\n")] = 0;
+int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+// Entrada de texto
+    printf("Informe o texto para aplicação da cifra: ");
+    fgets(texto, 100, stdin);
+    texto[strcspn(texto, "\n")] = 0;
+// Aplicando cifra ao texto"
+    for (i = 0; texto[i] != '\0'; i++) {
+        if (isalpha(texto[i])) { 
+            cifrado[i] = chave[texto[i] - 'A'];
+            
+        } else {
+            cifrado[i] = texto[i];
+        }
+    }
+    cifrado[i] = '\0';
+// Imprimindo a mensagem cifrada
+    printf("O texto cifrado é: %s\n", cifrado);
+    
+    return 0;
+}
