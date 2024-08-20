@@ -1,0 +1,44 @@
+//Q.04
+#include <stdio.h>
+
+// Função para obter um valor inteiro válido do usuário
+int lerValorValido() {
+    int valor;
+    while (1) {
+        printf("Mostre um valor a ser trocado em centavos (precisa ser maior que 0): ");
+        if (scanf("%d", &valor) != 1 || valor <= 0) {
+            // Limpa o buffer de entrada e exibe uma mensagem de erro
+            while (getchar() != '\n'); 
+            printf("Ops, valor inválido. Por favor, insira um número inteiro maior que 0.\n");
+        } else {
+            return valor;
+        }
+    }
+}
+
+int main() {
+    int valor = lerValorValido();
+    
+    // Tipos de moedas, da maior para a menor
+    int tipos_moeda[] = {25, 10, 5, 1};
+    int num_tipos_moeda = sizeof(tipos_moeda) / sizeof(tipos_moeda[0]);
+    int total_moedas = 0;
+
+    printf("Valor a ser trocado: %d\n", valor);
+
+    // Calcular a quantidade mínima de moedas
+    for (int i = 0; i < num_tipos_moeda; i++) {
+        int modelo = tipos_moeda[i];
+        if (valor >= modelo) {
+            int quantidade = valor / modelo;
+            valor -= quantidade * modelo;
+            total_moedas += quantidade;
+            printf("Moedas de %d centavos: %d\n", modelo, quantidade);
+        }
+    }
+
+    // Mostrar o total de moedas usadas
+    printf("Total de moedas usadas: %d\n", total_moedas);
+
+    return 0;
+}
