@@ -1,0 +1,55 @@
+// Q.09
+
+#include <stdio.h>
+#include <string.h>
+
+// Função para obter o índice de uma opção no array de opções
+int obterIndice(char *opcao, char *opcoes[], int numOpcoes) {
+    for (int i = 0; i < numOpcoes; i++) {
+        if (strcmp(opcao, opcoes[i]) == 0) {
+            return i;
+        }
+    }
+    return -1; // Retorna -1 se a opção não for encontrada
+}
+
+int main() {
+    int numCasos, casoAtual = 1;
+    char escolhaSheldon[10], escolhaRaj[10];
+    char *opcoes[] = {"pedra", "papel", "tesoura", "lagarto", "Spock"};
+    int numOpcoes = sizeof(opcoes) / sizeof(opcoes[0]);
+
+    // Matriz de vitória: vence[i][j] = 1 se a opção i vence a opção j
+    int resultadoVitoria[5][5] = {
+        {0, 1, 0, 1, 0}, // pedra
+        {0, 0, 1, 0, 1}, // papel
+        {1, 0, 0, 1, 0}, // tesoura
+        {0, 1, 0, 0, 1}, // lagarto
+        {1, 0, 1, 0, 0}  // Spock
+    };
+
+    // Leitura do número de casos
+    scanf("%d", &numCasos);
+
+    while (numCasos--) {
+        // Leitura das escolhas de Sheldon e Raj
+        scanf("%s %s", escolhaSheldon, escolhaRaj);
+
+        int indiceSheldon = obterIndice(escolhaSheldon, opcoes, numOpcoes);
+        int indiceRaj = obterIndice(escolhaRaj, opcoes, numOpcoes);
+
+        // Impressão do resultado
+        printf("Caso #%d: ", casoAtual++);
+        if (indiceSheldon == -1 || indiceRaj == -1) {
+            printf("Essa opção é inválida!\n"); // Opção não encontrada
+        } else if (indiceSheldon == indiceRaj) {
+            printf("Estão empate!\n"); // Empate
+        } else if (resultadoVitoria[indiceSheldon][indiceRaj]) {
+            printf("Parabéns, Sheldon venceu!\n"); // Se o Sheldon vencer
+        } else {
+            printf("Parabéns, Raj venceu!\n"); // Se o Raj vencer
+        }
+    }
+
+    return 0;
+}
