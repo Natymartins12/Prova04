@@ -1,0 +1,52 @@
+// Q.03
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+bool validar_cartao(const char *numero) {
+    int comprimento = strlen(numero);
+    int soma = 0;
+    bool alternar = false;
+
+     // Examina os dígitos do cartão de crédito de trás para frente"
+    for (int i = comprimento - 1; i >= 0; i--) {
+        char c = numero[i];
+        if (c < '0' || c > '9') {
+    // Desconsidera os caracteres que não são dígitos
+            continue;
+        }
+
+        int digito = c - '0';
+
+    // Em cada segunda posição, dobre o valor do dígito"
+        if (alternar) {
+            digito *= 2;
+    // Caso o valor ultrapasse 9, subtraia 9 para ajustar
+            if (digito > 9) {
+                digito -= 9;
+            }
+        }
+
+        soma += digito;
+        alternar = !alternar;
+    }
+
+    // O código é válido se o total for múltiplo de 10
+
+    return (soma % 10 == 0);
+}
+
+int main() {
+    char numero[20];
+
+    printf("Olá Por favor, digite o número do cartão de crédito: ");
+    scanf("%19s", numero);
+
+    if (validar_cartao(numero)) {
+        printf("Oba, o número do cartão de crédito que você digitou é válido.\n");
+    } else {
+        printf("Sinto muito, o número do cartão de crédito que foi digitado, é inválido.\n");
+    }
+
+    return 0;
+}
