@@ -1,0 +1,24 @@
+//Q.08
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    int A, B, C;
+    
+// Iteração continua até que a variável seja 0
+    while (scanf("%d", &A) != EOF)
+    {
+        if (A == 0)
+        {
+            break;
+        }
+// Obtém os valores de B e C
+        scanf("%d %d", &B, &C);
+// mostre a àrea calculada        
+        printf("%.0lf\n", floor(sqrt(A * B * 100.0 / C)));
+    }
+
+    return 0;
+}
