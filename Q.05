@@ -1,0 +1,55 @@
+//Q.05
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Função para calcular o valor de uma palavra
+int calcularValor(const char *texto) {
+    // Pontos atribuídos a cada letra do alfabeto
+    int pontosPorLetra[] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+
+    int totalPontos = 0;
+    int indice;
+    
+    for (indice = 0; indice < strlen(texto); indice++) {
+        char caractere = toupper(texto[indice]);
+        if (caractere >= 'A' && caractere <= 'Z') {
+            totalPontos += pontosPorLetra[caractere - 'A'];
+        }
+    }
+    
+    return totalPontos;
+}
+
+int main() {
+    char palavra1[100];
+    char palavra2[100];
+
+    // Entrada da palavra do Jogador 1
+    printf("Jogador 1, digite um nome: ");
+    fgets(palavra1, sizeof(palavra1), stdin);
+    palavra1[strcspn(palavra1, "\n")] = '\0';  // Remove o caractere de nova linha
+
+    // Entrada da palavra do Jogador 2
+    printf("Jogador 2, digite outro nome: ");
+    fgets(palavra2, sizeof(palavra2), stdin);
+    palavra2[strcspn(palavra2, "\n")] = '\0';  // Remove o caractere de nova linha
+
+    // Calcular a pontuação das palavras
+    int pontosJogador1 = calcularValor(palavra1);
+    int pontosJogador2 = calcularValor(palavra2);
+
+    // Apresentar os resultados
+    printf("Total de pontos do Jogador 1: %d\n", pontosJogador1);
+    printf("Total de pontos do Jogador 2: %d\n", pontosJogador2);
+
+    if (pontosJogador1 > pontosJogador2) {
+        printf("Parabéns, Jogador 1 ganhou!\n");
+    } else if (pontosJogador2 > pontosJogador1) {
+        printf("Parabéns, Jogador 2 ganhou!\n");
+    } else {
+        printf("Opa, estão empate!\n");
+    }
+
+    return 0;
+}
